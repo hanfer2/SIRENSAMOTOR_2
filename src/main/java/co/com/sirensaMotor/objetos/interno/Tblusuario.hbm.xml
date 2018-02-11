@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/01/2018 05:29:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="co.com.sirensaMotor.objetos.interno.Tblusuario" table="TBLUSUARIO" schema="MAIRA" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoidentificacion" type="big_decimal">
+            <column name="TIPOIDENTIFICACION" precision="22" scale="0" />
+        </property>
+        <property name="identificacion" type="big_decimal">
+            <column name="IDENTIFICACION" precision="22" scale="0" />
+        </property>
+        <property name="nombreusuario" type="string">
+            <column name="NOMBREUSUARIO" length="100" />
+        </property>
+        <property name="rol" type="string">
+            <column name="ROL" length="100" />
+        </property>
+        <property name="passwords" type="string">
+            <column name="PASSWORDS" length="100" />
+        </property>
+        <set name="tblproveedors" table="TBLPROVEEDOR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUSUARIO" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblproveedor" />
+        </set>
+        <set name="tblinventarios" table="TBLINVENTARIO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUSUARIO" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblinventario" />
+        </set>
+        <set name="tblrols" table="TBLROL" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUSUARIO" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblrol" />
+        </set>
+        <set name="tblproductos" table="TBLPRODUCTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUSUARIO" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblproducto" />
+        </set>
+        <set name="tblpedidos" table="TBLPEDIDO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUSUARIO" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblpedido" />
+        </set>
+        <set name="tblclientes" table="TBLCLIENTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUSUARIO" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblcliente" />
+        </set>
+        <set name="tbldevolucions" table="TBLDEVOLUCION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUSUARIO" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tbldevolucion" />
+        </set>
+    </class>
+</hibernate-mapping>

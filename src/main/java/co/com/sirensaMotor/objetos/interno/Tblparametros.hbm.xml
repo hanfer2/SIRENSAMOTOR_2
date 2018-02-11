@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/01/2018 05:29:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="co.com.sirensaMotor.objetos.interno.Tblparametros" table="TBLPARAMETROS" schema="MAIRA" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="100" />
+        </property>
+        <property name="abreviatura" type="string">
+            <column name="ABREVIATURA" length="10" not-null="true" unique="true" />
+        </property>
+        <set name="tblparametrosdetalles" table="TBLPARAMETROSDETALLE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PARAMETRO" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblparametrosdetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

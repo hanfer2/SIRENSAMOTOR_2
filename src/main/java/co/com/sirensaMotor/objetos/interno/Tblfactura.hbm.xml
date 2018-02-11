@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/01/2018 05:29:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="co.com.sirensaMotor.objetos.interno.Tblfactura" table="TBLFACTURA" schema="MAIRA" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblproveedor" class="co.com.sirensaMotor.objetos.interno.Tblproveedor" fetch="select">
+            <column name="IDPROVEEDOR" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="tblparametrosdetalle" class="co.com.sirensaMotor.objetos.interno.Tblparametrosdetalle" fetch="select">
+            <column name="TIPOIDENTIFICACIONVENDEDOR" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="tblcliente" class="co.com.sirensaMotor.objetos.interno.Tblcliente" fetch="select">
+            <column name="IDCLIENTE" precision="22" scale="0" />
+        </many-to-one>
+        <property name="idusuario" type="big_decimal">
+            <column name="IDUSUARIO" precision="22" scale="0" />
+        </property>
+        <property name="tipofactura" type="java.lang.Character">
+            <column name="TIPOFACTURA" length="1" />
+        </property>
+        <property name="numerofactura" type="string">
+            <column name="NUMEROFACTURA" length="30" />
+        </property>
+        <property name="fechafactura" type="date">
+            <column name="FECHAFACTURA" length="7" />
+        </property>
+        <property name="identificacionvendedor" type="string">
+            <column name="IDENTIFICACIONVENDEDOR" length="30" />
+        </property>
+        <property name="nombrevendedor" type="string">
+            <column name="NOMBREVENDEDOR" length="100" />
+        </property>
+        <property name="subtotal" type="big_decimal">
+            <column name="SUBTOTAL" precision="20" />
+        </property>
+        <property name="iva" type="big_decimal">
+            <column name="IVA" precision="20" />
+        </property>
+        <property name="descuento" type="big_decimal">
+            <column name="DESCUENTO" precision="20" />
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="TOTAL" precision="20" />
+        </property>
+        <property name="fechacreacion" type="date">
+            <column name="FECHACREACION" length="7" />
+        </property>
+        <set name="tbldetallefacturas" table="TBLDETALLEFACTURA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFACTURA" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tbldetallefactura" />
+        </set>
+        <set name="tbldevolucions" table="TBLDEVOLUCION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFACTURA" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tbldevolucion" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/01/2018 05:29:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="co.com.sirensaMotor.objetos.interno.Tblparametrosdetalle" table="TBLPARAMETROSDETALLE" schema="MAIRA" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblparametros" class="co.com.sirensaMotor.objetos.interno.Tblparametros" fetch="select">
+            <column name="ID_PARAMETRO" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="descripcionDetalle" type="string">
+            <column name="DESCRIPCION_DETALLE" length="100" />
+        </property>
+        <property name="abreviatura" type="string">
+            <column name="ABREVIATURA" length="10" />
+        </property>
+        <property name="valor" type="string">
+            <column name="VALOR" length="100" not-null="true" />
+        </property>
+        <set name="tblfacturas" table="TBLFACTURA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TIPOIDENTIFICACIONVENDEDOR" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblfactura" />
+        </set>
+        <set name="tblproveedors" table="TBLPROVEEDOR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TIPOPERSONA" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblproveedor" />
+        </set>
+        <set name="tblclientes" table="TBLCLIENTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="TIPOIDENTIFICACION" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblcliente" />
+        </set>
+    </class>
+</hibernate-mapping>
