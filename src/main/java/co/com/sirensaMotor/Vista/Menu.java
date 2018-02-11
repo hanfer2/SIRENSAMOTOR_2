@@ -69,10 +69,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws SQLException, DAOException {
-     VistaCRUDCliente vtn = new VistaCRUDCliente(new DAOCliente());
-     vtn.setVisible(true);
-    }
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
