@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/01/2018 05:29:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="co.com.sirensaMotor.objetos.interno.Tblproducto" table="TBLPRODUCTO" schema="MAIRA" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblusuario" class="co.com.sirensaMotor.objetos.interno.Tblusuario" fetch="select">
+            <column name="IDUSUARIO" precision="22" scale="0" />
+        </many-to-one>
+        <property name="referencia" type="string">
+            <column name="REFERENCIA" length="20" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="200" not-null="true" />
+        </property>
+        <property name="precio" type="big_decimal">
+            <column name="PRECIO" precision="20" not-null="true" />
+        </property>
+        <property name="presentacion" type="string">
+            <column name="PRESENTACION" length="5" />
+        </property>
+        <set name="tblinventarios" table="TBLINVENTARIO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRODUCTO" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tblinventario" />
+        </set>
+        <set name="tbldevolucions" table="TBLDEVOLUCION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRODUCTO" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tbldevolucion" />
+        </set>
+        <set name="tbldetallefacturas" table="TBLDETALLEFACTURA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRODUCTO" precision="22" scale="0" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tbldetallefactura" />
+        </set>
+        <set name="tbldetallepedidos" table="TBLDETALLEPEDIDO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRODUCTO" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="co.com.sirensaMotor.objetos.interno.Tbldetallepedido" />
+        </set>
+    </class>
+</hibernate-mapping>

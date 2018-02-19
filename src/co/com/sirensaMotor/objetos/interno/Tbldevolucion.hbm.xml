@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/01/2018 05:29:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="co.com.sirensaMotor.objetos.interno.Tbldevolucion" table="TBLDEVOLUCION" schema="MAIRA" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblusuario" class="co.com.sirensaMotor.objetos.interno.Tblusuario" fetch="select">
+            <column name="IDUSUARIO" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="tblproducto" class="co.com.sirensaMotor.objetos.interno.Tblproducto" fetch="select">
+            <column name="IDPRODUCTO" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tblfactura" class="co.com.sirensaMotor.objetos.interno.Tblfactura" fetch="select">
+            <column name="IDFACTURA" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="fechadevolucion" type="date">
+            <column name="FECHADEVOLUCION" length="7" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="OBSERVACION" length="400" />
+        </property>
+    </class>
+</hibernate-mapping>
